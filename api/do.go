@@ -53,7 +53,6 @@ func (c *DOClient) CreateRecord(data DOAPICreateRecordRequest, token, domain str
 	if err != nil {
 		return nil, err
 	}
-	fmt.Printf("%s\n", jsonStr)
 	req, _ := http.NewRequest("POST", fmt.Sprintf("https://api.digitalocean.com/v2/domains/%s/records", domain), bytes.NewBuffer(jsonStr))
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("Content-Type", "application/json")
@@ -64,7 +63,7 @@ func (c *DOClient) CreateRecord(data DOAPICreateRecordRequest, token, domain str
 		return nil, err
 	}
 	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
+	if resp.StatusCode != http.StatusCreated {
 		bodyBytes, err := ioutil.ReadAll(resp.Body)
 		if err != nil {
 			log.Fatal(err)

@@ -62,7 +62,7 @@ var doCmd = &cobra.Command{
 				panic(err)
 			}
 			if doRecord != nil {
-				log.Printf("Created record with ID %d\n", doRecord.ID)
+				log.Printf("[DO] Created record with ID %d\n", doRecord.ID)
 			}
 		}
 	},
